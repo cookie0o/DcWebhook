@@ -10,6 +10,9 @@
 **response**   
 ![image](https://user-images.githubusercontent.com/81589649/179058354-5f65904b-4467-4ff3-b89d-2dfb4b6c92c8.png)   
 
+## how to use
+https://github.com/cookie0o/DcWebhook/wiki
+
 ## +Install:
 **manually**
 - Download project
