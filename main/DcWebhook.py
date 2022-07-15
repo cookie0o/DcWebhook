@@ -4,7 +4,7 @@ import requests
 
 class Values():
     # define webhook url
-    webhook = "https://discord.com/api/webhooks/997183313628385383/hL5z49bfBmlGIF4cpDPUPLNGFhXI9CcDvtpC9ylEMGsgiWzPRa-Zc0oB56liBW7B4qOS"
+    webhook = ""
 
     # get the output mode
     output_mode = "1" # 1=All / 2=Only Errors / 3=Only Successes / 4=Nothing
