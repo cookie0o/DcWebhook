@@ -1,2 +1,7 @@
-include main\*
-include *.*
+include LICENSE
+include pyproject.toml
+include README.md
+include setup.cfg
+
+include main/__init__.py
+include main/DcWebhook.py

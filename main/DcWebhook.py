@@ -4,7 +4,7 @@ import requests
 
 class Values():
     # define webhook url
-    webhook = ""
+    webhook = "https://discord.com/api/webhooks/997183313628385383/hL5z49bfBmlGIF4cpDPUPLNGFhXI9CcDvtpC9ylEMGsgiWzPRa-Zc0oB56liBW7B4qOS"
 
     # get the output mode
     output_mode = "1" # 1=All / 2=Only Errors / 3=Only Successes / 4=Nothing
@@ -24,9 +24,16 @@ class ResponseHandler():
            ## return ("[ERROR] "+ str(e))
             print("[ERROR] "+ str(e))
 
-    def RateLimit(message):
-        # for future versions:
-        print ("[RL]   "+ "Rate limit reached. Wait for " + str(message) + " seconds and retry.")
+    def CheckResponse(response):
+        # check if response is ok
+        if response.status_code == 200:
+            return "no_error"
+        elif response.status_code == 400:
+            ResponseHandler.Error("400: Bad Request")
+            return "error"
+        elif response.status_code == 429:
+            ResponseHandler.Error("429: Rate Limit reached.")
+            return "error"
 
 ###--------------------------------------------------------------###
 
@@ -40,25 +47,31 @@ class DcWebhook():
                 "content": message
             }
             # send message
-            requests.post(Values.webhook, json=payload)
-    
+            x = requests.post(Values.webhook, json=payload)
 
-            ResponseHandler.Log("Message successfully sent!")
+            # check for errors
+            if ResponseHandler.CheckResponse(x) == "error":
+                pass
+            else:
+                ResponseHandler.Log("Message successfully sent!")
         except Exception as e:
             ResponseHandler.Error(e)
 
     # SEND FILE
-    def send_File(file_path):
+    def send_file(file_path):
         try:
             # define payload
             payload = {
                 "file": open(file_path, 'rb')
             }
             # send message
-            requests.post(Values.webhook, files=payload)
+            x = requests.post(Values.webhook, files=payload)
 
-                
-            ResponseHandler.Log("File successfully sent!")
+            # check for errors
+            if ResponseHandler.CheckResponse(x) == "error":
+                pass
+            else:
+                ResponseHandler.Log("Message successfully sent!")
         except Exception as e:
             ResponseHandler.Error(e)
 
@@ -87,10 +100,13 @@ class DcWebhook():
             }
 
             # send message
-            requests.post(Values.webhook, json=payload)
-
-
-            ResponseHandler.Log("Embed successfully sent!")
+            x = requests.post(Values.webhook, json=payload)
+            
+            # check for errors
+            if ResponseHandler.CheckResponse(x) == "error":
+                pass
+            else:
+                ResponseHandler.Log("Message successfully sent!")
         except Exception as e:
             ResponseHandler.Error(e)
            
@@ -101,40 +117,12 @@ class DcWebhook():
             payload = raw_embed
 
             # send message
-            requests.post(Values.webhook, json=payload)
-
-
-            ResponseHandler.Log("Raw Embed successfully sent!")
+            x = requests.post(Values.webhook, json=payload)
+            
+            # check for errors
+            if ResponseHandler.CheckResponse(x) == "error":
+                pass
+            else:
+                ResponseHandler.Log("Message successfully sent!")
         except Exception as e:
             ResponseHandler.Error(e)
-
-
-"""
-DcWebhook.send_message("Hello World!")
-###
-DcWebhook.send_File(r"A:\test.jpg")
-###
-DcWebhook.send_embed(
-    "This is a Test title.", 
-    "this is a test embed.",
-    "https://i.imgur.com/w3duR07.png",
-    "https://i.imgur.com/w3duR07.png",
-    0xFF0000,
-    )
-###
-DcWebhook.send_raw_embed({
-    "embeds": [
-        {
-        "title": "This is a Test title.",
-        "description": "This is a test raw embed.",
-        "color": 0x00FFFF,
-        "thumbnail": {
-            "url": "https://i.imgur.com/w3duR07.png",
-        },
-        "image": {
-            "url": "https://i.imgur.com/w3duR07.png"
-        },
-        }
-    ]
-    })
-"""
