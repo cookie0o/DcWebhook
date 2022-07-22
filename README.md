@@ -1,6 +1,6 @@
 <div align=center>
   
-  # DcWebhook v0.0.3
+  # DcWebhook v0.0.4
   
   **Simple Discord Webhook wrapper for Python.**
 </div>
