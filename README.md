@@ -11,7 +11,7 @@
 ![image](https://user-images.githubusercontent.com/81589649/180581182-2a599c6e-5614-4903-bcb6-2c82046bc218.png)   
 
 ## how to use
-https://github.com/cookie0o/DcWebhook/wiki
+https://github.com/sch-raphael/DcWebhook/wiki
 
 ## +Install:
 **manually**
@@ -25,4 +25,4 @@ https://github.com/cookie0o/DcWebhook/wiki
 - your done!
 
 ### +author(s) on github:
-cookie0o
+sch-raphael
